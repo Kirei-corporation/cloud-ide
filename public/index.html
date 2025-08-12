@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud IDE</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/codemirror.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/theme/monokai.min.css"
+  />
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    #topbar {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #workspace {
+      display: flex;
+      height: calc(100% - 32px);
+    }
+    #files {
+      width: 200px;
+      background: #f0f0f0;
+      border-right: 1px solid #ddd;
+      overflow-y: auto;
+    }
+    #editor-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    #editor {
+      flex: 1;
+    }
+    #console {
+      height: 150px;
+      background: #1e1e1e;
+      color: #fff;
+      overflow-y: auto;
+      font-size: 13px;
+      padding: 6px;
+    }
+    #preview {
+      height: 250px;
+      border-top: 1px solid #ccc;
+    }
+    ul.file-list {
+      list-style: none;
+      padding-left: 10px;
+    }
+    ul.file-list li {
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+    ul.file-list li:hover {
+      background: #ddd;
+    }
+    #controls {
+      padding: 4px;
+      border-bottom: 1px solid #ddd;
+    }
+    #controls button {
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div id="topbar">
+    <div>Cloud IDE</div>
+    <div>
+      Token:
+      <input type="password" id="tokenInput" placeholder="Auth token" style="padding: 2px 6px;" />
+      <button id="connectBtn">Connect</button>
+    </div>
+  </div>
+  <div id="workspace">
+    <div id="files">
+      <div id="controls">
+        <button id="refreshBtn">Refresh</button>
+        <button id="newFileBtn">New File</button>
+        <button id="uploadBtn">Upload</button>
+      </div>
+      <div id="fileTree"></div>
+      <input type="file" id="fileInput" style="display:none" />
+    </div>
+    <div id="editor-section">
+      <div id="editor"></div>
+      <div id="console"></div>
+      <div id="preview">
+        <iframe id="previewFrame" src="about:blank" style="width:100%;height:100%;border:none"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/mode/python/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
