@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: cloud-ide
+    env: node
+    plan: free
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: false
+    envVars:
+      - key: AUTH_TOKEN
+        value: yourSecretToken
